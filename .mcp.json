@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "coffee-agent": {
+      "command": "uv",
+      "args": ["run", "coffee-agent", "serve"]
+    }
+  }
+}
