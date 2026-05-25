@@ -1,6 +1,6 @@
 # coffee-agent
 
-A toy agent built with [BurrMCP](https://github.com/msradam/burrmcp): a coffee
+A toy agent built with [Theodosia](https://github.com/msradam/theodosia): a coffee
 ordering workflow defined as a [Burr](https://burr.dagworks.io/) state machine
 and served as an [MCP](https://modelcontextprotocol.io/) server. An LLM drives
 it one transition at a time, and the server enforces the order of operations.
@@ -41,9 +41,9 @@ This whole repo is about 90 lines. The shape:
 
 1. `src/coffee_agent/app.py` defines the Burr graph (five `@action`s and the
    transitions between them).
-2. `src/coffee_agent/cli.py` wraps it in BurrMCP's `build_cli` so the package
+2. `src/coffee_agent/cli.py` wraps it in Theodosia's `build_cli` so the package
    ships a `coffee-agent` command with the graph baked in.
-3. `pyproject.toml` depends on `burrmcp` and registers the console script.
+3. `pyproject.toml` depends on `theodosia` and registers the console script.
 
 ## Install
 
@@ -104,10 +104,10 @@ uv run coffee-agent sessions show         # per-step timeline, refusals in red
 uv run coffee-agent watch                 # live-tail a running session
 ```
 
-`coffee-agent` inherits these observability commands from BurrMCP.
+`coffee-agent` inherits these observability commands from Theodosia.
 
 ## License
 
-Apache 2.0. Built on [BurrMCP](https://github.com/msradam/burrmcp),
+Apache 2.0. Built on [Theodosia](https://github.com/msradam/theodosia),
 [Apache Burr](https://github.com/apache/burr), and
 [FastMCP](https://github.com/jlowin/fastmcp).

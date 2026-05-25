@@ -41,7 +41,7 @@ def main() -> None:
     console.print(f"[muted](coffee-agent) >[/] [prompt]{PROMPT}[/]")
     time.sleep(1.1)
     console.print()
-    console.print("[subtle]the model reads burr://graph, then drives the FSM one step at a time:[/]")
+    console.print("[subtle]the model reads theodosia://graph, then drives the FSM one step at a time:[/]")
     console.print()
     time.sleep(1.0)
     for action, args, state in STEPS:

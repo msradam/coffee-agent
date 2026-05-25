@@ -16,7 +16,8 @@ from typing import Literal
 
 from burr.core import ApplicationBuilder, State, action
 from burr.core.action import Condition
-from burr.tracking.client import LocalTrackingClient
+
+from theodosia import tracker
 
 BASE_PRICE = 5.0
 MODIFIER_PRICE = {"extra_shot": 1.0, "oat_milk": 1.0, "syrup": 1.0}
@@ -96,7 +97,7 @@ def build_application():
             ("add_modifier", "cancel", ordered),
             ("pay", "fulfill", paid),
         )
-        .with_tracker(LocalTrackingClient(project="coffee-agent"))
+        .with_tracker(tracker("coffee-agent"))
         .with_state(stage="new")
         .with_entrypoint("take_order")
         .build()
