@@ -25,10 +25,15 @@ in the state machine, not in a prompt the model has to remember. Pay before
 ordering, or fulfill before paying, and the response is a structured refusal
 listing the actions that are actually reachable.
 
-![coffee-agent](demos/coffee-agent.gif)
+An LLM drives it over MCP. Here fast-agent connects a Llama-3.3-70B model
+(on Together) and the model calls the `step` tool to walk the order:
 
-`coffee-agent render` prints that graph in the terminal; `coffee-agent sessions
-show` replays a recorded run, with refused steps in red.
+![coffee-agent driven by an LLM](demos/coffee-agent-agent.gif)
+
+The same workflow is observable from the terminal. `coffee-agent render` prints
+the graph; `coffee-agent sessions show` replays a recorded run, refusals in red:
+
+![coffee-agent observability](demos/coffee-agent.gif)
 
 ## Build it yourself
 
@@ -69,12 +74,16 @@ Then ask: "Order a latte with an extra shot and pay for it." Claude calls the
 
 ### fast-agent (a terminal REPL, Python)
 
+The repo ships a `fastagent.config.yaml` defining this server, so:
+
 ```bash
-uvx fast-agent-mcp go --model sonnet --servers coffee-agent
+uvx fast-agent-mcp go --servers coffee-agent -m "Order a latte and pay for it, then fulfill the order."
 ```
 
-(reads the `.mcp.json` in the working directory). Use `--model generic.qwen2.5`
-to run against a local Ollama model instead of a hosted one.
+It uses Gemini by default (set `GOOGLE_API_KEY`). To drive it with a Together
+model instead, set `GENERIC_API_KEY` and add
+`--model generic.meta-llama/Llama-3.3-70B-Instruct-Turbo`. For a fully local
+run, point the config's `generic.base_url` at Ollama.
 
 ### MCPJam (one npx command, free hosted models, browser playground)
 
