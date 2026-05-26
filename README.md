@@ -102,9 +102,13 @@ Every step is recorded to Burr's tracker. From the repo:
 uv run coffee-agent sessions ls
 uv run coffee-agent sessions show         # per-step timeline, refusals in red
 uv run coffee-agent watch                 # live-tail a running session
+uv run coffee-agent verify                # check the session's hash-chained ledger
 ```
 
-`coffee-agent` inherits these observability commands from Theodosia.
+`coffee-agent` inherits these observability commands from Theodosia. Every step
+and refusal is also hash-chained into a tamper-evident `ledger.jsonl`; `verify`
+recomputes the chain and names any line that was edited or reordered after the
+fact.
 
 ## License
 
